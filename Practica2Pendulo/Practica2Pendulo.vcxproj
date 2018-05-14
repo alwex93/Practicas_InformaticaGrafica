@@ -75,6 +75,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
+    <LibraryPath>C:\Users\alejandro\Desktop\Alex\Curso6\Informatica Grafica\Practicas_InformaticaGrafica\Practica2Pendulo;$(LibraryPath)</LibraryPath>
+    <ReferencePath>C:\Users\alejandro\Desktop\Alex\Curso6\Informatica Grafica\Practicas_InformaticaGrafica\Practica2Pendulo;$(ReferencePath)</ReferencePath>
+    <SourcePath>C:\Users\alejandro\Desktop\Alex\Curso6\Informatica Grafica\Practicas_InformaticaGrafica\Practica2Pendulo;$(SourcePath)</SourcePath>
+    <IncludePath>C:\Users\alejandro\Desktop\Alex\Curso6\Informatica Grafica\Practicas_InformaticaGrafica\Practica2Pendulo;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -108,6 +113,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Users\alejandro\Desktop\Alex\Curso6\Informatica Grafica\Practicas_InformaticaGrafica\Practica2Pendulo;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>C:\Users\alejandro\Desktop\Alex\Curso6\Informatica Grafica\Practicas_InformaticaGrafica\Practica2Pendulo\glut32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
