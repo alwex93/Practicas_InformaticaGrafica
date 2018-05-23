@@ -1,59 +1,56 @@
-#include "Nodo2.h"
+#include "Nodo.h"
 #include <stdlib.h>
 
 class list
 {
-	Nodo2* head;
-	Nodo2* tail;
+	int bolas;
+	Nodo* giros;
 public:
 	list()
 	{
-		head = NULL;
-		tail = NULL;
+		bolas = 0;
+		giros = NULL;
 	}
 
-	void createnode(float i, float j)
+	void createnode(float i, float j, bool dir)
 	{
-		Nodo2* temp = new Nodo2;
-		temp->x = i;
-		temp->y = j;
-		if (head == NULL)
+		Nodo* temp = new Nodo{i, j, dir};
+		bolas++;
+		if (giros == NULL)
 		{
-			head = temp;
-			tail = temp;
-			tail->next = NULL;
-			temp = NULL;
+			giros = temp;
 		}
-		else
-		{
-			tail->next = temp;
-			tail = temp;
-			tail->next = NULL;
+		else {
+			addNodo(temp, giros);
 		}
 	}
 
-	Nodo2* get_first()
+	void addNodo(Nodo* n, Nodo* p) {
+		while (p != NULL) {
+			p = p->next;
+		}
+		p->next = n;
+		n->next = NULL;
+	}
+
+	Nodo* get_first()
 	{
-		Nodo2 *temp = new Nodo2;
-		temp = head;
+		Nodo *temp = new Nodo;
+		temp = giros;
 		return temp;
 	}
 
-	Nodo2* get_last()
+	int get_bolas()
 	{
-		Nodo2 *temp = new Nodo2;
-		temp = tail;
-		return temp;
+		return bolas;
 	}
 
-	void insert_end(float i, float j)
+	bool get_dir(int n)
 	{
-		Nodo2 *temp = new Nodo2;
-		temp->x = i;
-		temp->y = j;
-		tail->next = temp;
-		tail = temp;
-		tail->next = NULL;
+		Nodo *temp = giros;
+		for (int i = 0; i < n; i++) {
+			temp = temp->next;
+		}
+	return temp->derecha;
 	}
 };
-
