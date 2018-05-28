@@ -20,17 +20,17 @@ public:
 		{
 			giros = temp;
 		}
-		else {
-			addNodo(temp, giros);
+		else { //poner al principio
+			temp->next = giros;
+			giros = temp;
 		}
 	}
 
-	void addNodo(Nodo* n, Nodo* p) {
-		while (p != NULL) {
-			p = p->next;
+	int isHead(float i, float j) {
+		if (new Nodo{ i, j, NULL } == giros) {
+			return giros->derecha;
 		}
-		p->next = n;
-		n->next = NULL;
+		return -1;
 	}
 
 	Nodo* get_first()
