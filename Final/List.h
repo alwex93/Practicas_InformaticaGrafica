@@ -27,7 +27,8 @@ public:
 	}
 
 	int isHead(float i, float j) {
-		if (new Nodo{ i, j, NULL } == giros) {
+		//if (new Nodo{ i, j, NULL } == giros) {
+		if (i == giros->x && j == giros->y) {
 			return giros->derecha;
 		}
 		return -1;
