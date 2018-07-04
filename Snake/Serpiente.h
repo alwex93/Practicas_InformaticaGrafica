@@ -1,25 +1,76 @@
-#include "Nodo.h"
 #include <iostream>
 #include <cmath>
 #include <tuple>
+#include "Nodo.h"
 using namespace std;
 
-class serpiente
+enum Direction { up, rght, down, lft };
+
+class Serpiente
 {
 	int bolas;
 	Nodo* cabeza;
 	Nodo* cola;
+	int filaCabeza, columnaCabeza;
 public:
-	serpiente() {
+	Serpiente() {
 		bolas = 0;
 		cabeza = NULL;
 		cola = cabeza;
+		filaCabeza = 0;
+		columnaCabeza = 0;
 	}
-	serpiente(int i, int j)
-	{
-		bolas = 1;
-		cabeza = new Nodo{ i, j };
+
+	Serpiente(int initFila, int initColumna) {
+		bolas = 0;
+		cabeza = new Nodo{ initFila, initColumna };
 		cola = cabeza;
+		filaCabeza = initFila;
+		columnaCabeza = initColumna;
+	}
+
+	int getCabezaFila() {
+		return filaCabeza;
+	}
+
+	int getCabezaColumna() {
+		return columnaCabeza;
+	}
+
+	void moverCabeza(Direction dir) {
+		switch (dir) {
+		case up:
+			filaCabeza--;
+			break;
+		case rght:
+			columnaCabeza++;
+			break;
+		case down:
+			filaCabeza++;
+			break;
+		case lft:
+			columnaCabeza--;
+		}
+	}
+
+	void moverCola() {
+		int xaux = filaCabeza;
+		int yaux = columnaCabeza;
+		int xnext;
+		int ynext;
+		Nodo *temp = cabeza;
+		do {
+			//Guardar valores para siguiente bola
+			xnext = temp->x;
+			ynext = temp->y;
+			//Actualizamos bola actual
+			temp->x = xaux;
+			temp->y = yaux;
+			//Valores que pasan para la siguiente bola
+			xaux = xnext;
+			yaux = ynext;
+			temp = temp->next;
+		} while (temp != NULL);
 	}
 
 	void addBola()
@@ -55,30 +106,6 @@ public:
 	int get_bolas()
 	{
 		return bolas;
-	}
-
-	tuple<int,int> move(int x, int y) {
-		if (abs(x - cabeza->x) + abs(y - cabeza->y) != 1) {
-			return make_tuple(0,0);
-		}
-		int xaux = x;
-		int yaux = y;
-		int xnext;
-		int ynext;
-		Nodo *temp = cabeza;
-		do {
-			//Guardar valores para siguiente bola
-			xnext = temp->x;
-			ynext = temp->y;
-			//Actualizamos bola actual
-			temp->x = xaux;
-			temp->y = yaux;
-			//Valores que pasan para la siguiente bola
-			xaux = xnext;
-			yaux = ynext;
-			temp = temp->next;
-		} while (temp != NULL);
-		return make_tuple(xnext, ynext);
 	}
 
 	void printlist() {

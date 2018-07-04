@@ -1,1 +1,0 @@
-enum Estado { vacio, bola, objeto};
